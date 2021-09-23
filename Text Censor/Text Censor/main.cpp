@@ -6,31 +6,40 @@
 //
 
 #include <iostream>
-#include <string>
 #include <vector>
-#include <algorithm>
-#include <cmath>
+#include <sstream>
+
 using namespace std;
 
 int main() {
     cout << "Enter a sentence: ";
     vector<string> sentence;
-    
-    //words to censor
+    string temp;
+    getline(cin, temp);
+    //enter specific words to censor
     vector<string> censor = {"hate", "bad", "no"};
-    for (string temp; cin >> temp;) {
-        sentence.push_back(temp);
-    }
-    cout << "\n";
+    istringstream split(temp);
+    for (string temp; getline(split, temp, ' '); sentence.push_back(temp));
+
+    cout << "Censor checked: ";
     for (string x : sentence) {
+        string word;
+        for (char z : x) {
+            if (isalpha(z)) {
+                word.push_back(z);
+            }
+        }
         bool ok = true;
         for (int counter = 0; counter < sentence.size(); ++counter) {
-            if (x == censor[counter]) {
+            if (word == censor[counter]) {
                 ok = false;
             }
         }
         if (ok == true) cout << x << " ";
-        else cout << "BLEEP ";
+        else {
+            for (char a : word) cout << "*";
+            cout << ' ';
+        }
     }
     cout << "\n";
 }
