@@ -4,4 +4,4 @@ Censors user input by checking input word for word against a list of banned word
 ## Purpose:
 Can be implemented into chat systems for filtering foul or banned language.
 ## Libraries: 
-Created using only the standard library.
+Created using the standard library.
